@@ -1,3 +1,7 @@
+/**
+ * List Out All Question
+ */
+
 import { connectToDatabase } from '../db/ds';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, ListRenderItemInfo } from 'react-native';
 import { useEffect, useState } from 'react';
@@ -7,6 +11,7 @@ const ListAllQuestion: React.FC = ({ navigation }) => {
 
     const [questions, setQuestion] = useState<Question[]>([]);
 
+    //Fetched All Qusetion from database
     const fetchedQuestions = async () => {
         const db = await connectToDatabase()
         const fetchedQuestions: Question[] = await findAllQuestions(db);
@@ -17,10 +22,12 @@ const ListAllQuestion: React.FC = ({ navigation }) => {
     }, [questions]);
 
 
+    //OnEdit Function
     const onEdit = (questionId: number) => {
 
     }
 
+    //delete qusetion
     const onDelete = (questionId: number) => {
 
     }

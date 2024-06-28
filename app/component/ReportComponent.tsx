@@ -3,11 +3,19 @@ import { ScrollView, Text, View, StyleSheet, SafeAreaView } from 'react-native';
 import { Attempt } from '../model/Attempt';
 import { Question } from '../model/Question';
 
+/**
+ * IProps For for get And Props
+ */
 interface Props {
   attempts: Attempt[];
   questions: Question[];
 }
 
+/**
+ * Report Component
+ * @param attempts 
+ * @returns 
+ */
 const ReportComponent: React.FC<Props> = ({ attempts, questions }) => {
   return (
     <SafeAreaView style={styles.container}>

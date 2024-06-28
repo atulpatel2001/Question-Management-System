@@ -14,7 +14,10 @@ import AttemptScreen from '../screen/AttemptScreen';
 import ReportScreen from '../screen/ReportScreen';
 import AdminReportScreen from '../screen/AdminReportScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+/**
+ * Route Component Configure route config
+ * @returns 
+ */
 const Route: React.FC = () => {
     const Stack = createNativeStackNavigator();
 

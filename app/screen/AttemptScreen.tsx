@@ -1,3 +1,7 @@
+/**
+ * Attempt Screen Component
+ */
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import { connectToDatabase } from '../db/ds';
@@ -24,6 +28,8 @@ const AttemptScreen: React.FC = ({ navigation }) => {
             userId: 0
         }
     )
+
+    //load all qusetion from database
     useEffect(() => {
         const loadQuestion = async () => {
             const db = await connectToDatabase();
@@ -33,8 +39,10 @@ const AttemptScreen: React.FC = ({ navigation }) => {
         loadQuestion();
     }, []);
 
+    //get current qusetion
     const currentQuestion = questions[currentQuestionIndex];
 
+    //handle select answer
     const handleOptionSelect = (option: number) => {
         setSelectedOption(option);
     };
@@ -47,6 +55,9 @@ const AttemptScreen: React.FC = ({ navigation }) => {
         );
     }
 
+    /**
+     * Got next qusetion and attempt this question
+     */
     const goToNextQuestion = async () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -97,6 +108,11 @@ const AttemptScreen: React.FC = ({ navigation }) => {
         }
     };
 
+
+    /**
+     * Save Answer into database 
+     * 
+     */
     const saveAnswer = async () => {
         const userName = await getData();
         const db = await connectToDatabase();

@@ -1,7 +1,16 @@
+
+/**
+ * Attempt Service Perform all crud operation
+ */
 import { SQLiteDatabase } from 'react-native-sqlite-storage';
 import { Attempt } from '../model/Attempt';
 
-
+/**
+ * Add Attempt to table call insert query
+ * @param db 
+ * @param attempt 
+ * @returns 
+ */
 export async function addAttempt(db: SQLiteDatabase, attempt: Attempt): Promise<number> {
     const insertQuery = `
             INSERT INTO attempt (userId, questionId, answer, isCorrect, createdAt, updatedAt)
@@ -23,6 +32,12 @@ export async function addAttempt(db: SQLiteDatabase, attempt: Attempt): Promise<
 }
 
 
+/**
+ * Update Attempt from database call update query
+ * @param db 
+ * @param attempt 
+ * @returns 
+ */
 export async function updateAttempt(db: SQLiteDatabase, attempt: Attempt): Promise<number> {
     if (!attempt.attemptId) {
         throw new Error('Attempt ID is required for update');
@@ -48,6 +63,12 @@ export async function updateAttempt(db: SQLiteDatabase, attempt: Attempt): Promi
     }
 }
 
+/**
+ * delete attempt from db and call delete query 
+ * @param db 
+ * @param attemptId 
+ * @returns 
+ */
 export async function deleteAttempt(db: SQLiteDatabase, attemptId: number): Promise<number> {
     const deleteQuery = `
             DELETE FROM attempt
@@ -63,6 +84,12 @@ export async function deleteAttempt(db: SQLiteDatabase, attemptId: number): Prom
     }
 }
 
+/**
+ * get attempt by id from db
+ * @param db 
+ * @param attemptId 
+ * @returns 
+ */
 export async function getAttemptById(db: SQLiteDatabase, attemptId: number): Promise<Attempt | null> {
     const query = `
             SELECT * FROM attempt
@@ -91,6 +118,12 @@ export async function getAttemptById(db: SQLiteDatabase, attemptId: number): Pro
     }
 }
 
+/**
+ * get attempt by userId from db
+ * @param db 
+ * @param userId 
+ * @returns 
+ */
 export async function getAttemptsByUserId(db: SQLiteDatabase, userId: number): Promise<Attempt[]> {
     const query = `
             SELECT * FROM attempt
@@ -121,7 +154,13 @@ export async function getAttemptsByUserId(db: SQLiteDatabase, userId: number): P
 }
 
 
-
+/**
+ * get attempt by userid and questionid  from db
+ * @param db 
+ * @param userId 
+ * @param questionId 
+ * @returns 
+ */
 export async function getAttemptsByUserIdAndQuestionId(db: SQLiteDatabase, userId: number, questionId: number): Promise<Attempt | null> {
     const query = `
             SELECT * FROM attempt
@@ -145,11 +184,17 @@ export async function getAttemptsByUserIdAndQuestionId(db: SQLiteDatabase, userI
         } else {
             return null;
         }
-    }catch (error) {
+    } catch (error) {
         console.error('Error fetching attempts by userId And questionId:', error);
         throw new Error('Failed to fetch attempts by userId And questionId');
     }
 }
+
+/**
+ * get all attempts from db
+ * @param db 
+ * @returns 
+ */
 export async function getAllAttempts(db: SQLiteDatabase,): Promise<Attempt[]> {
     const query = `
             SELECT * FROM attempt
@@ -178,7 +223,11 @@ export async function getAllAttempts(db: SQLiteDatabase,): Promise<Attempt[]> {
 }
 
 
-
+/**
+ * delete all attempts 
+ * @param db 
+ * @returns 
+ */
 export const deleteAllAttempts = async (db: SQLiteDatabase): Promise<number> => {
     const deleteQuery = `
             DELETE FROM attempt;

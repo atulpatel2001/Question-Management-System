@@ -1,6 +1,16 @@
+
+/**
+ * Qusetion Service Perform All CRUD operation
+ */
 import { SQLiteDatabase } from "react-native-sqlite-storage"
 import { Question } from "../model/Question";
 
+/**
+ * add qusetion in table call insert query
+ * @param db 
+ * @param question 
+ * @returns 
+ */
 export const addQuestion = async (db: SQLiteDatabase, question: Question): Promise<number> => {
     const insertQuery = `
         INSERT INTO questions (questionText, option1, option2, option3, option4, correctAnswer, createdAt, updatedAt)
@@ -24,6 +34,12 @@ export const addQuestion = async (db: SQLiteDatabase, question: Question): Promi
 };
 
 
+/**
+ * Update Qusetion in databse fire update query
+ * @param db 
+ * @param question 
+ * @returns 
+ */
 export const updateQuestion = async (db: SQLiteDatabase, question: Question): Promise<number> => {
     const updateQuery = `
         UPDATE questions
@@ -53,6 +69,12 @@ export const updateQuestion = async (db: SQLiteDatabase, question: Question): Pr
 
 
 
+/**
+ * Get Question By id
+ * @param db 
+ * @param questionId 
+ * @returns 
+ */
 export const findQuestionById = async (db: SQLiteDatabase, questionId: number): Promise<Question | null> => {
     const query = `
         SELECT * FROM questions
@@ -85,6 +107,11 @@ export const findQuestionById = async (db: SQLiteDatabase, questionId: number): 
 };
 
 
+/**
+ * Find All Question
+ * @param db 
+ * @returns 
+ */
 export const findAllQuestions = async (db: SQLiteDatabase): Promise<Question[]> => {
     const query = `
         SELECT * FROM questions

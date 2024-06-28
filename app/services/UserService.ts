@@ -1,5 +1,16 @@
+/**
+ * User Service And perfrom usertable crud
+ */
+
 import { SQLiteDatabase } from "react-native-sqlite-storage"
 import { User } from "../model/User";
+
+/**
+ * Add User in db 
+ * @param db 
+ * @param user 
+ * @returns 
+ */
 export const addUser = async (db: SQLiteDatabase, user: User): Promise<number> => {
     const insertQuery = `
         INSERT INTO users (username, password, name, role, createdAt, updatedAt)
@@ -23,7 +34,12 @@ export const addUser = async (db: SQLiteDatabase, user: User): Promise<number> =
 
 
 
-
+/**
+ * Update user in db
+ * @param db 
+ * @param user 
+ * @returns 
+ */
 export const updateUser = async (db: SQLiteDatabase, user: User): Promise<number> => {
     const updateQuery = `
         UPDATE users
@@ -45,6 +61,13 @@ export const updateUser = async (db: SQLiteDatabase, user: User): Promise<number
     }
 };
 
+
+/**
+ * Delete user 
+ * @param db 
+ * @param userId 
+ * @returns 
+ */
 export const deleteUser = async (db: SQLiteDatabase, userId: number): Promise<number> => {
     const deleteQuery = `
         DELETE FROM users
@@ -61,6 +84,14 @@ export const deleteUser = async (db: SQLiteDatabase, userId: number): Promise<nu
 };
 
 
+
+/**
+ * get user by username and pasword
+ * @param db 
+ * @param username 
+ * @param password 
+ * @returns 
+ */
 export const findByUsernameAndPassword = async (db: SQLiteDatabase, username: string, password: string): Promise<User | null> => {
     const query = `
         SELECT * FROM users
@@ -91,7 +122,12 @@ export const findByUsernameAndPassword = async (db: SQLiteDatabase, username: st
 };
 
 
-
+/**
+ * Find by username
+ * @param db 
+ * @param username 
+ * @returns 
+ */
 export const findByUsername = async (db: SQLiteDatabase, username: string): Promise<User | null> => {
     const query = `
         SELECT * FROM users
@@ -123,6 +159,12 @@ export const findByUsername = async (db: SQLiteDatabase, username: string): Prom
 
 
 
+/**
+ * user find by userid
+ * @param db 
+ * @param userId 
+ * @returns 
+ */
 export const findById = async (db: SQLiteDatabase, userId: number): Promise<User | null> => {
     const query = `
         SELECT * FROM users
@@ -153,7 +195,11 @@ export const findById = async (db: SQLiteDatabase, userId: number): Promise<User
 };
 
 
-
+/**
+ * 
+ * @param db Find All User
+ * @returns 
+ */
 export const findAllUsers = async (db: SQLiteDatabase): Promise<User[]> => {
     const query = `
         SELECT * FROM users WHERE role = 'ROLE_USER' ORDER BY userId ASC;

@@ -1,3 +1,5 @@
+//Attempt Model
+
 export interface Attempt{
     attemptId:number,
     userId:number,

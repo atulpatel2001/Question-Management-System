@@ -1,7 +1,8 @@
+/**
+ * ReportScreen Component For User
+ */
+
 import { SafeAreaView,StyleSheet ,View,StatusBar,ScrollView,Text} from 'react-native'
-
-
-
 import { useEffect, useState } from "react"
 import { Attempt } from "../model/Attempt"
 import { connectToDatabase } from "../db/ds"
@@ -16,6 +17,9 @@ import ReportComponent from '../component/ReportComponent'
 const ReportScreen:React.FC = ({ navigation }) => {
     const [attempts, setAttempts] = useState<Attempt[]>([]);
     const [questions, setQuestions] = useState<Question[]>([]);
+
+
+    //Load all data from database
     useEffect(() => {
       const loadData = async () => {
         try {

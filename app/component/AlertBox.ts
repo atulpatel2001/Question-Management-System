@@ -1,4 +1,6 @@
-
+/**
+ * AlertBox Component Show Alert Message.
+ */
 import React from 'react';
 import { Alert} from 'react-native';
 export const showAlert = (title:string,subTitle:string) =>

@@ -4,6 +4,9 @@ import { Text, View, StyleSheet, Button } from "react-native"
 const AdminScreen: React.FC = ({ navigation }) => {
 
 
+    /**
+     * Handle Logout and remove token
+     */
     const handleLogout = async () => {
         try {
           await AsyncStorage.removeItem('username');

@@ -1,7 +1,8 @@
-import { SafeAreaView,StyleSheet ,View,StatusBar,ScrollView,Text} from 'react-native'
+/**
+ * Admin Report Screen
+ */
 
-
-
+import {StyleSheet ,View,StatusBar,ScrollView,Text} from 'react-native'
 import { useEffect, useState } from "react"
 import { Attempt } from "../model/Attempt"
 import { connectToDatabase } from "../db/ds"
@@ -18,6 +19,8 @@ const AdminReportScreen:React.FC = ({ navigation,route }) => {
     const userId=route.params.userId;
     const [attempts, setAttempts] = useState<Attempt[]>([]);
     const [questions, setQuestions] = useState<Question[]>([]);
+
+    
     useEffect(() => {
       const loadData = async () => {
         try {

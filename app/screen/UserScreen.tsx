@@ -1,16 +1,22 @@
+
+/**
+ * User Home Screen Component
+ */
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Text, View, StyleSheet, Button } from "react-native"
 
 const UserScreen: React.FC = ({ navigation }) => {
+
+    // Logout From Current  Session
     const handleLogout = async () => {
         try {
-        
-          await AsyncStorage.removeItem('username');
-          navigation.replace('LoginScreen');
+
+            await AsyncStorage.removeItem('username');
+            navigation.replace('LoginScreen');
         } catch (error) {
-          console.error('Error logging out:', error);
+            console.error('Error logging out:', error);
         }
-      };
+    };
     return (
         <View style={styles.container}>
             <Text style={styles.title}>User Screen</Text>
@@ -25,7 +31,7 @@ const UserScreen: React.FC = ({ navigation }) => {
                 <View style={styles.button}>
                     <Button
                         title="Report"
-                        onPress={() =>navigation.navigate("UserReportScreen")
+                        onPress={() => navigation.navigate("UserReportScreen")
                         }
                     />
                 </View>

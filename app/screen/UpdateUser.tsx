@@ -1,3 +1,7 @@
+/**
+ * Update User Data Component
+ */
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { User } from '../model/User';
@@ -41,6 +45,9 @@ const UpdateUser: React.FC = ({ navigation, route }) => {
         }));
     };
 
+    /**
+     * Handle Submit data and store in database
+     */
     const handleSubmit = async () => {
 
         const db = await connectToDatabase();
@@ -59,6 +66,7 @@ const UpdateUser: React.FC = ({ navigation, route }) => {
 
     };
 
+    //show password and hide 
     const handleHideAlert = () => {
         setShowAlert(false);
     };

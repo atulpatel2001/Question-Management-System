@@ -1,3 +1,6 @@
+/**
+ * List Out All User Component
+ */
 import { connectToDatabase } from '../db/ds';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, ListRenderItemInfo } from 'react-native';
 import { User } from '../model/User';
@@ -7,6 +10,7 @@ const ListAllUser: React.FC = ({ navigation }) => {
 
     const [users, setUsers] = useState<User[]>([]);
 
+    //Fetch Users from database
     const fetchUsers = async () => {
         const db = await connectToDatabase()
         const fetchedUsers: User[] = await findAllUsers(db);
@@ -17,12 +21,15 @@ const ListAllUser: React.FC = ({ navigation }) => {
     }, [users]);
 
 
+
+    //edit user in database
     const onEdit = async (userId: number) => {
         const db = await connectToDatabase();
         const oldUser = await findById(db, userId);
         navigation.navigate('UpdateUser', { oldUser: oldUser });
     }
 
+    //delete user in database
     const onDelete = async (userId: number) => {
         const db = await connectToDatabase();
         await deleteUser(db, userId);
@@ -30,10 +37,11 @@ const ListAllUser: React.FC = ({ navigation }) => {
 
     }
 
-    const onReport=(userId:number)=>{
-        navigation.navigate('AdminReportScreen',{userId:userId});
+    //navigate to report screen
+    const onReport = (userId: number) => {
+        navigation.navigate('AdminReportScreen', { userId: userId });
     }
-    
+
     const renderItem = ({ item, index }: ListRenderItemInfo<User>) => {
         const user = item;
 

@@ -1,3 +1,8 @@
+
+/**
+ * Add Qusetion Component 
+ * create form 
+ */
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from "react-native"
 import { Question } from "../model/Question"
 import { useState } from "react"
@@ -5,10 +10,14 @@ import { Picker } from "@react-native-picker/picker"
 import { connectToDatabase } from "../db/ds";
 import { addQuestion } from "../services/QuestionService";
 import AwesomeAlert from "react-native-awesome-alerts";
+
+//IState For Statemanagemt
 interface IState {
     question: Question,
     errors: { [key in keyof Question]: string | undefined };
 }
+
+//IntialQuestion State
 const initialQuestionState: Question = {
     questionId: 0,
     questionText: "",
@@ -21,6 +30,8 @@ const initialQuestionState: Question = {
     updatedAt: "",
 };
 
+
+//IntialError State
 const initialErrorsState = {
     questionText: undefined,
     option1: undefined,
@@ -34,6 +45,11 @@ const initialErrorsState = {
 
 
 };
+
+/**
+ * Add Qusetion Statement
+ * @returns 
+ */
 const AddQuestion: React.FC = () => {
     const [state, setState] = useState<IState>({
         question: { ...initialQuestionState },
@@ -41,6 +57,11 @@ const AddQuestion: React.FC = () => {
     });
     const [showAlert, setShowAlert] = useState(false);
 
+
+/**
+ * Validation Function get Field Data is valid
+ * @returns 
+ */
     const validate = (): boolean => {
         const errors = {} as { [key in keyof Question]: string | undefined };
 
@@ -71,6 +92,11 @@ const AddQuestion: React.FC = () => {
         return Object.keys(errors).length === 0;
     };
 
+    /**
+     * Handle Change data from field
+     * @param name 
+     * @param value 
+     */
     const handleChange = (name: keyof Question, value: string) => {
         setState((prevState) => ({
             ...prevState,
@@ -81,10 +107,15 @@ const AddQuestion: React.FC = () => {
         }));
     };
 
+    //Show Password And Hide Password
     const handleHideAlert = () => {
         setShowAlert(false);
     };
 
+    /**
+     * check currect qustion data
+     * @param value number
+     */
     const handleSelectChange = (value: number) => {
         setState((prevState) => ({
             ...prevState,
@@ -95,6 +126,9 @@ const AddQuestion: React.FC = () => {
         }));
     };
 
+    /**
+     * Submit Form Data And Store data in database
+     */
     const handleSubmit = async () => {
         if (validate()) {
 

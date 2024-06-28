@@ -1,3 +1,6 @@
+/**
+ * Login Screen 
+ */
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native";
 import { LoginFormModel } from "../model/LoginForm";
 import { connectToDatabase } from "../db/ds";
@@ -18,6 +21,11 @@ const LoginScreen: React.FC = ({ navigation }) => {
         }
     })
 
+    /**
+     * Handle All field changes and update it
+     * @param key 
+     * @param value 
+     */
     const handleInputChange = (key: keyof LoginFormModel, value: string) => {
         setState(prevState => ({
             ...prevState,
@@ -30,6 +38,9 @@ const LoginScreen: React.FC = ({ navigation }) => {
 
 
 
+    /**
+     * Fetch data from db validate  it and authorize it
+     */
     const login = async () => {
         console.log(state.credential)
         try {
@@ -47,14 +58,6 @@ const LoginScreen: React.FC = ({ navigation }) => {
                 else {
                     navigation.navigate('UserScreen');
                 }
-
-                // const data = getData();
-                // if (data == null) {
-
-                // }
-                // else {
-                //     removeIteam();
-                // }
 
                 console.log(state.credential.username + " for debug")
 

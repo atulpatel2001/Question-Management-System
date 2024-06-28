@@ -1,8 +1,15 @@
+/**
+ * Splash Screen Component
+ */
+
 import React, { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = ({ navigation }) => {
+
+
+  //Check Login status is admin or user
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {

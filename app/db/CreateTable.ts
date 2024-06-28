@@ -1,6 +1,12 @@
 import { SQLiteDatabase } from "react-native-sqlite-storage";
-
+/**
+ * create all db table 
+ * @param db 
+ */
 export const CreateTables = async (db: SQLiteDatabase) => {
+  
+
+  //user table
   const createUserTable = `
       CREATE TABLE IF NOT EXISTS users (
     userId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,6 +20,7 @@ export const CreateTables = async (db: SQLiteDatabase) => {
     `;
 
 
+    //Question Table
   const createQuestionTable = `
      CREATE TABLE IF NOT EXISTS questions (
     questionId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,6 +36,7 @@ export const CreateTables = async (db: SQLiteDatabase) => {
     `;
 
 
+    //Attempt Table
   const createAttemptTable = `
     CREATE TABLE IF NOT EXISTS attempt (
     attemptId INTEGER PRIMARY KEY  AUTOINCREMENT,

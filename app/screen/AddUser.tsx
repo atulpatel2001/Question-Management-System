@@ -1,3 +1,6 @@
+/**
+ * Add User Component Add user in database
+ */
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { User } from "../model/User";
 import { useState } from "react";
@@ -5,7 +8,7 @@ import { connectToDatabase } from "../db/ds";
 import { addUser } from "../services/UserService";
 import { showAlert } from "../component/AlertBox";
 import AwesomeAlert from "react-native-awesome-alerts";
-
+//Istste
 interface IState {
   user: User;
   errors: { [key in keyof User]: string | undefined };
@@ -13,6 +16,8 @@ interface IState {
 }
 
 const AddUser: React.FC = () => {
+
+  //user Data state
   const [state, setState] = useState<IState>({
     user: {
       username: "",
@@ -38,6 +43,12 @@ const AddUser: React.FC = () => {
 
   const [showAlert, setShowAlert] = useState(false);
 
+
+  /**
+   * handle change data from input field and update it
+   * @param name 
+   * @param value 
+   */
   const handleChange = (name: keyof User, value: string) => {
     setState((prevUser) => ({
       ...prevUser,
@@ -45,6 +56,11 @@ const AddUser: React.FC = () => {
     }));
   };
 
+
+  /**
+ * Validation Function get Field Data is valid
+ * @returns 
+ */
   const validate = (): boolean => {
     const errors = {} as { [key in keyof User]: string }; // Typed error object
     const usernameRegex = /^[a-zA-Z0-9._]+$/; // Alphanumeric username with optional dots and underscores
@@ -65,6 +81,10 @@ const AddUser: React.FC = () => {
     return Object.keys(errors).length === 0;
   };
 
+
+  /**
+    * Submit Form Data And Store data in database
+    */
   const handleSubmit = async () => {
     if (validate()) {
       const db = await connectToDatabase();

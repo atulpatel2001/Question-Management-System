@@ -1,3 +1,4 @@
+// Question Model
 export interface Question {
     questionId: number;
     questionText: string;

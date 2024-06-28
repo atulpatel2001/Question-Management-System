@@ -5,6 +5,7 @@ import {
   
   enablePromise(true)
   
+  //connection to database  
   export const connectToDatabase = async () => {
     return openDatabase(
       { name: "QuestionManagement.db", location: "default" },
